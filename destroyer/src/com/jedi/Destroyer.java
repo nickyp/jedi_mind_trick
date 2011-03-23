@@ -28,5 +28,32 @@ public class Destroyer {
         System.out.println(this.getJedi().name());
     }
 
+    public void showBytes(byte [] data) {
+        System.out.println(BytesToHexString(data));
+    }
+
+    public byte[] getBytes() {
+        byte[] bytes = {(byte) 0x9E, (byte) 0x87, (byte) 0x42};
+        return bytes;
+    }
+
+    public static String BytesToHexString(byte[] array) {
+        String s, out = "";
+        int lng = array.length;
+        // The length stored at [0] is include in the array lng information
+        for (int i = 0; i < lng; i++)
+        {
+            s = "OX";
+            s += Integer.toHexString((byte) array[i] & 0xFF);
+            if (s.length() == 1)
+            {
+                s = "0" + s; // A => 0x0A
+            }
+            s += "\n";
+            out += s.toUpperCase();
+        }
+        return (out);
+    }
+
 
 }
